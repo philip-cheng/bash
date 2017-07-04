@@ -8,7 +8,8 @@
 ##############################
 
 # .dmg file fullpath
-dmg_path="/tmp/cotvnc-20b4.dmg"
+# dmg_path="/tmp/cotvnc-20b4.dmg"
+dmg_path="C:\bash_install_app\CitrixReceiver.dmg"
 
 # .dmg file mounted path
 dmg_mntpath="/Volumes/Chicken of the VNC"
@@ -22,6 +23,20 @@ pkg_path="/tmp/application.pkg"
 # application type
 apptype="dmg"
 #apptype="pkg"
+
+##############################
+# Get file extension
+##############################
+# Extract filename and extension in Bash
+# https://stackoverflow.com/questions/965053/extract-filename-and-extension-in-bash
+get_ext() {
+    fullfile="C:\wk_tmp\abc xyz.1.2.extname.txt"
+    filename=$(basename "$fullfile")
+    file_ext="${filename##*.}"
+    filename="${filename%.*}"
+    
+    return $file_ext
+}
 
 ##############################
 # Check file existence
