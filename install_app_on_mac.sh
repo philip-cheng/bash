@@ -24,11 +24,12 @@ apptype="dmg"
 #apptype="pkg"
 
 ##############################
-# has_file()
+# Check file existence
+# If exists returns 0, else returns 1.
 ##############################
 has_file() {
-    if [ -e "$1" ]; then
-        echo "$1 NOT FOUND!"
+    if [ ! -e "$1" ]; then
+        # echo "$1 NOT FOUND!"
         return 1
     fi
     return 0
@@ -40,7 +41,7 @@ has_file() {
 if [ "$apptype" = "dmg" ]; then
     echo "Proceeding dmg ..."
     
-    if [ ! -e "$dmg_path" ]; then
+    if [ `has_file "$dmg_path"` ]; then
         echo "$dmg_path NOT FOUND!"
         exit 1
     fi
@@ -49,7 +50,7 @@ if [ "$apptype" = "dmg" ]; then
     hdiutil mount "$dmg_path"
 
     # Step 2 - Install the application
-    if [ ! -e "/$dmg_mntpath/$app_name" ]; then
+    if [ `has_file "/$dmg_mntpath/$app_name"` ]; then
         echo "/$dmg_mntpath/$app_name NOT FOUND!"
         exit 1
     fi
@@ -63,11 +64,15 @@ if [ "$apptype" = "dmg" ]; then
     exit 0
 elif [ "$apptype" = "pkg" ]; then
     echo "Proceeding pkg ..."
+    if [ `has_file "$pkg_path"` ]; then
+        echo "$pkg_path NOT FOUND!"
+        exit 1
+    fi
     #sudo installer -store -pkg "$app_name" -target /
     sudo installer -package "$pkg_path" -target "/Volumes/Macintosh HD"
     echo "Done with pkg."
     exit 0
 else
-    echo "Invalid application type!"
+    echo "Invalid application type: $apptype"
     exit 1
 fi
