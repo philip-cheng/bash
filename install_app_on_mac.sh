@@ -8,14 +8,13 @@
 ##############################
 
 # .dmg file fullpath
-# dmg_path="/tmp/cotvnc-20b4.dmg"
-dmg_path="C:\bash_install_app\CitrixReceiver.dmg"
+dmg_path="/tmp/CitrixReceiver.dmg"
 
 # .dmg file mounted path
-dmg_mntpath="/Volumes/Chicken of the VNC"
+dmg_mntpath="/Volumes/Citrix Receiver"
 
-# .app filename
-app_name="Chicken of the VNC.app"
+# .app dir name
+app_name="Citrix Receiver.app"
 
 # .pkg file fullpath
 pkg_path="/tmp/application.pkg"
