@@ -1,0 +1,20 @@
+# mount a .dmg file
+hdiutil mount /path/of/dmg/file
+
+# unmount
+umount /mounted/device/path
+
+### if saying "resource busy", use -f
+umount -f /mounted/device/path
+
+# List All Mounted Drives and their Partitions from the Terminal
+diskutil list > all_mounted.txt
+
+# list all software installed - using find
+sudo find / -iname *.app > all_sw_installed_using_find.txt
+
+# list all software installed - using system_profiler
+system_profiler -detailLevel full SPApplicationsDataType > all_sw_installed_using_system_profiler.txt
+
+# list all sotware from App Store
+find /Applications -path '*Contents/_MASReceipt/receipt' -maxdepth 4 -print |\sed 's#.app/Contents/_MASReceipt/receipt#.app#g; s#/Applications/##' > all_sw_installed_from_appstore.txt
