@@ -7,7 +7,7 @@
 # .dmg file fullpath
 dmg_path="/Users/localsupport/Downloads/CitrixReceiver.dmg"
 
-# .dmg file mounted path
+# .dmg file mount path
 dmg_mntpath="/Volumes/Citrix Receiver"
 
 # .pkg file fullpath
@@ -18,7 +18,7 @@ pkg_path="$dmg_mntpath/$pkg_name"
 app_name="Uninstall Citrix Receiver.app"
 
 # target path to install .pkg using installer
-# using / is enough to tell installer to install sw under /Applications
+# using / is enough to tell installer to install sw under /Applications/
 # using /Applications causes error. 
 #install_dest="/"
 
@@ -56,7 +56,9 @@ fi
 
 sudo installer -package "$pkg_path" -target /
 
-sudo cp -R "/$dmg_mntpath/$app_name" /Applications
+# In case the original package is .app
+# If so then it is application package, not installation package.
+#sudo cp -R "/$dmg_mntpath/$app_name" /Applications
 
 # Step 3 - Unmount the disk image
 #cd ~
